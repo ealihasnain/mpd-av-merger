@@ -1,12 +1,12 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
+<!DOCTYPE html>
+<!-- saved from url=(0049)file:///C:/Users/ali.hasnain/Downloads/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>MPD · Audio + Video Merger</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./index_files/css2" rel="stylesheet">
 <style>
 :root{
   --paper:#E8E2D5; --paper2:#DDD7C8; --paperL:#F2EDE4;
@@ -199,15 +199,15 @@ body::after{
       <input type="file" id="vInput" accept="video/*,.mp4,.mov,.mkv,.webm,.avi,.m4v,.flv,.wmv" style="display:none">
       <div class="uz-label">Video file</div>
       <div class="uz-hint">MP4 / MOV / MKV / WEBM · click or drop</div>
-      <div class="uz-name" id="vName" hidden></div>
-      <div class="uz-meta" id="vMeta" hidden></div>
+      <div class="uz-name" id="vName" hidden=""></div>
+      <div class="uz-meta" id="vMeta" hidden=""></div>
     </div>
     <div class="upload-zone" id="aDrop" style="cursor:pointer">
       <input type="file" id="aInput" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.opus,.flac" style="display:none">
       <div class="uz-label">Audio file</div>
       <div class="uz-hint">MP3 / WAV / M4A / AAC · click or drop</div>
-      <div class="uz-name" id="aName" hidden></div>
-      <div class="uz-meta" id="aMeta" hidden></div>
+      <div class="uz-name" id="aName" hidden=""></div>
+      <div class="uz-meta" id="aMeta" hidden=""></div>
     </div>
   </div>
 </div>
@@ -220,7 +220,7 @@ body::after{
 
   <div class="mode-list">
     <label class="mode-card enabled" data-mode="replace">
-      <input type="radio" name="mode" value="replace" checked>
+      <input type="radio" name="mode" value="replace" checked="">
       <div>
         <div class="mode-name">Replace original audio</div>
         <div class="mode-desc">Strip video's audio · use new audio only · re-encode audio to AAC 192 kbps</div>
@@ -260,7 +260,7 @@ body::after{
     <div class="field">
       <label class="field-label">Trim</label>
       <label class="check-row" style="margin-top:8px">
-        <input type="checkbox" id="shortest" checked>
+        <input type="checkbox" id="shortest" checked="">
         Stop at shortest stream
       </label>
       <div class="field-hint">Off = pad to longest stream.</div>
@@ -270,12 +270,12 @@ body::after{
 
 <!-- STEP 3 — RUN -->
 <div class="step" id="step3">
-  <div class="step-num">03 · MERGE & DOWNLOAD</div>
+  <div class="step-num">03 · MERGE &amp; DOWNLOAD</div>
   <div class="step-title">Run the pipeline</div>
-  <div class="step-desc">ffmpeg.wasm runs locally. Watch the log for codec mismatches — if stream-copy fails, switch the format dropdown to <em>re-encode</em> and retry. <span class="pill" id="enginePill">loading engine…</span></div>
+  <div class="step-desc">ffmpeg.wasm runs locally. Watch the log for codec mismatches — if stream-copy fails, switch the format dropdown to <em>re-encode</em> and retry. <span class="pill" id="enginePill">library not loaded</span></div>
 
   <div class="actions">
-    <button class="btn primary" id="run" disabled>Merge files</button>
+    <button class="btn primary" id="run" disabled="">Merge files</button>
     <button class="btn ghost small" id="reset">Reset</button>
     <button class="btn ghost small" id="toggleLog">Show log</button>
   </div>
@@ -287,16 +287,16 @@ body::after{
       <div class="dl-name" id="dlName"></div>
       <div class="dl-size" id="dlSize"></div>
     </div>
-    <a class="btn primary" id="dl" download>Download</a>
+    <a class="btn primary" id="dl" download="">Download</a>
   </div>
 
-  <div class="status" id="log" style="display:none"></div>
+  <div class="status" id="log" style="display: block;"><div class="log-line err"><span class="log-time">21:38:55</span>FFmpeg library failed to load from ./vendor/.</div><div class="log-line err"><span class="log-time">21:38:55</span>Possible causes:</div><div class="log-line err"><span class="log-time">21:38:55</span>  · vendor/ffmpeg.js or vendor/util.js missing — check the folder</div><div class="log-line err"><span class="log-time">21:38:55</span>  · Opened from file:// — most browsers block module/worker loads. Use a local server (python -m http.server, or GitHub Pages)</div><div class="log-line warn"><span class="log-time">21:38:55</span>File picker still works for selecting files; merge will not run.</div></div>
 </div>
 
 </div>
 
-<script src="./vendor/util.js"></script>
-<script src="./vendor/ffmpeg.js"></script>
+<script src="file:///C:/Users/ali.hasnain/Downloads/vendor/util.js"></script>
+<script src="file:///C:/Users/ali.hasnain/Downloads/vendor/ffmpeg.js"></script>
 <script>
 (() => {
   const CORE_BASE = './vendor';
@@ -409,10 +409,10 @@ body::after{
 
   (async () => {
     try {
-      logLine('Loading ffmpeg core (~30 MB) from local vendor/…','warn');
+      logLine('Loading ffmpeg core (js local, wasm from jsdelivr)…','warn');
       await ffmpeg.load({
         coreURL: await toBlobURL(`${CORE_BASE}/ffmpeg-core.js`, 'text/javascript'),
-        wasmURL: await toBlobURL(`${CORE_BASE}/ffmpeg-core.wasm`, 'application/wasm'),
+        wasmURL: await toBlobURL(`https://cdn.jsdelivr.net/npm/@ffmpeg/[email protected]/dist/umd/ffmpeg-core.wasm`, 'application/wasm'),
       });
       ready = true;
       setPill('engine ready', true);
@@ -507,5 +507,6 @@ body::after{
   });
 })();
 </script>
-</body>
-</html>
+
+
+</body></html>
